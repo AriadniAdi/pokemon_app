@@ -39,9 +39,6 @@ android/key.properties
 # Logs
 *.log
 
-# Docs gerados
-docs/
-
 # Arquivos temporários do sistema
 .DS_Store
 Thumbs.db
