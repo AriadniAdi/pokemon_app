@@ -111,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen>
                     return ColorFiltered(
                       colorFilter: ColorFilter.mode(
                         Colors.black.withOpacity(1 - _revealAnimation.value),
-                        BlendMode.srcATop,
+                        BlendMode.srcATop, // Cria a silhueta escura
                       ),
                       child: CachedNetworkImage(
                         imageUrl: pokemon.artwork,

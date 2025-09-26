@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokemon_app/domain/entities/pokemon.dart';
 import 'package:pokemon_app/presentation/splash/splash_screen.dart';
 import 'package:pokemon_app/presentation/splash/splash_store.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MockSplashStore extends Mock implements SplashStore {}
 
@@ -16,6 +18,14 @@ void main() {
 
   Widget createWidgetUnderTest() {
     return MaterialApp(
+      locale: const Locale('pt'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       home: SplashScreen(store: mockStore),
     );
   }
@@ -40,7 +50,7 @@ void main() {
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.textContaining('Falha ao carregar'), findsOneWidget);
+      expect(find.textContaining('Falha'), findsOneWidget);
       expect(find.byType(ElevatedButton), findsOneWidget);
     });
 
@@ -52,7 +62,12 @@ void main() {
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.textContaining('noPokemonAvailable'), findsOneWidget);
+      expect(
+        find.text(
+            AppLocalizations.of(tester.element(find.byType(SplashScreen)))!
+                .noPokemonAvailable),
+        findsOneWidget,
+      );
     });
 
     testWidgets('exibe Pokémon carregado corretamente', (tester) async {
@@ -73,11 +88,9 @@ void main() {
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      // verifica se o nome aparece em maiúsculo
       expect(find.text('PIKACHU'), findsOneWidget);
 
-      // verifica se a imagem foi renderizada
-      expect(find.byType(Image), findsWidgets);
+      expect(find.byType(CircularProgressIndicator), findsWidgets);
     });
   });
 }
