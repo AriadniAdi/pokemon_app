@@ -1,0 +1,58 @@
+{
+  "@@locale": "pt",
+
+  "appTitle": "Pokédex",
+  "@appTitle": {
+    "description": "Título da aplicação, exibido na barra de app e título do sistema."
+  },
+
+  "splashTitle": "Quem é esse Pokémon?",
+  "@splashTitle": {
+    "description": "Título exibido na splash screen perguntando qual é o Pokémon mostrado."
+  },
+
+  "tapForDetails": "Toque para ver detalhes",
+  "@tapForDetails": {
+    "description": "Subtítulo abaixo de um Pokémon na lista, convidando o usuário a abrir os detalhes."
+  },
+
+  "retry": "Tentar novamente",
+  "@retry": {
+    "description": "Texto do botão de tentar novamente quando ocorre um erro ao carregar dados."
+  },
+
+  "loadingError": "Não foi possível carregar o Pokémon. Verifique sua conexão.",
+  "@loadingError": {
+    "description": "Mensagem de erro exibida quando os dados do Pokémon não podem ser carregados."
+  },
+
+  "noPokemonAvailable": "Nenhum Pokémon disponível.",
+  "@noPokemonAvailable": {
+    "description": "Mensagem exibida quando não há Pokémon disponíveis para mostrar."
+  },
+
+  "noDetailsLoaded": "Nenhum detalhe carregado",
+  "@noDetailsLoaded": {
+    "description": "Mensagem exibida quando os detalhes do Pokémon não puderam ser recuperados."
+  },
+
+  "types": "Tipos",
+  "@types": {
+    "description": "Rótulo para os tipos do Pokémon, ex.: Grama, Fogo, Água."
+  },
+
+  "height": "Altura",
+  "@height": {
+    "description": "Rótulo para o atributo de altura de um Pokémon."
+  },
+
+  "weight": "Peso",
+  "@weight": {
+    "description": "Rótulo para o atributo de peso de um Pokémon."
+  },
+
+  "abilities": "Habilidades",
+  "@abilities": {
+    "description": "Rótulo para o atributo de habilidades de um Pokémon."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Pokédex",
+  "@appTitle": {
+    "description": "Title of the application, shown in the app bar and system title."
+  },
+
+  "splashTitle": "Who's that Pokémon?",
+  "@splashTitle": {
+    "description": "Title displayed in the splash screen asking which Pokémon is shown."
+  },
+
+  "tapForDetails": "Tap to see details",
+  "@tapForDetails": {
+    "description": "Subtitle below a Pokémon in the list, prompting the user to open details."
+  },
+
+  "retry": "Try again",
+  "@retry": {
+    "description": "Text of the retry button when an error occurs while loading data."
+  },
+
+  "loadingError": "Failed to load Pokémon. Check your connection.",
+  "@loadingError": {
+    "description": "Error message displayed when Pokémon data cannot be loaded."
+  },
+
+  "noPokemonAvailable": "No Pokémon available",
+  "@noPokemonAvailable": {
+    "description": "Message shown when no Pokémon are available to display."
+  },
+
+  "noDetailsLoaded": "No details loaded",
+  "@noDetailsLoaded": {
+    "description": "Message shown when Pokémon details could not be retrieved."
+  },
+
+  "types": "Types",
+  "@types": {
+    "description": "Label for Pokémon types, e.g. Grass, Fire, Water."
+  },
+
+  "height": "Height",
+  "@height": {
+    "description": "Label for the height attribute of a Pokémon."
+  },
+
+  "weight": "Weight",
+  "@weight": {
+    "description": "Label for the weight attribute of a Pokémon."
+  },
+
+  "abilities": "Abilities",
+  "@abilities": {
+    "description": "Label for the abilities attribute of a Pokémon."
+  }
+}
