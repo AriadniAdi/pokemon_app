@@ -6,8 +6,9 @@ Inspirado no clássico **“Quem é esse Pokémon?”**, com animações, telas 
 ## 🎥 Demonstração
 
 <div align="center">
-  <img src="docs/pokemon.gif" alt="Pokémon Demo" width="300"/>
+  <img src="https://raw.githubusercontent.com/seu-usuario/pokemon_app/main/docs/pokemon.gif" width="300" />
 </div>
+
 
 ---
 
