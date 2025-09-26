@@ -1,0 +1,47 @@
+# Dart & Flutter
+.dart_tool/
+.packages
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Build outputs
+build/
+**/GeneratedPluginRegistrant.*
+*.dill
+*.stamp
+
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+ios/Podfile.lock
+ios/Runner.xcworkspace/
+ios/DerivedData/
+ios/build/
+ios/Debug-iphonesimulator/
+ios/iphonesimulator/
+*.xcuserstate
+
+# Android
+android/.gradle/
+android/local.properties
+android/app/*.keystore
+android/app/*.jks
+android/key.properties
+*.iml
+
+# VSCode & IntelliJ
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Docs gerados
+docs/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db

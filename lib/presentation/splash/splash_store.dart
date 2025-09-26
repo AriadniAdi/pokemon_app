@@ -4,8 +4,16 @@ import 'package:pokemon_app/domain/usecases/get_random_pokemon.dart';
 
 part 'splash_store.g.dart';
 
+abstract class ISplashStore {
+  bool get isLoading;
+  String? get errorMessage;
+  Pokemon? get pokemon;
+
+  Future<void> loadRandomPokemon();
+}
+
 // ignore: library_private_types_in_public_api
-class SplashStore = _SplashStore with _$SplashStore;
+class SplashStore = _SplashStore with _$SplashStore implements ISplashStore;
 
 abstract class _SplashStore with Store {
   final GetRandomPokemon getRandomPokemon;

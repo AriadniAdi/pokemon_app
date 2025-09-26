@@ -5,7 +5,7 @@ Inspirado no clássico **“Quem é esse Pokémon?”**, com animações, telas 
 
 ## 🎥 Demonstração
 
-[Ver demonstração do Pokémon.mov](assets/pokemon.mov)
+![Quem é esse Pokémon?](docs/pokemon.gif)
 
 ---
 

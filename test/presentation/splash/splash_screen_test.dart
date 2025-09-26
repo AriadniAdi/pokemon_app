@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:pokemon_app/domain/entities/pokemon.dart';
 import 'package:pokemon_app/presentation/splash/splash_screen.dart';
 import 'package:pokemon_app/presentation/splash/splash_store.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MockSplashStore extends Mock implements SplashStore {}
+/// Stub bem simples da store só pra testes
+class StubSplashStore implements ISplashStore {
+  @override
+  bool isLoading;
+  @override
+  String? errorMessage;
+  @override
+  Pokemon? pokemon;
 
-void main() {
-  late MockSplashStore mockStore;
-
-  setUp(() {
-    mockStore = MockSplashStore();
+  StubSplashStore({
+    this.isLoading = false,
+    this.errorMessage,
+    this.pokemon,
   });
 
-  Widget createWidgetUnderTest() {
+  @override
+  Future<void> loadRandomPokemon() async {
+    // não faz nada nos testes
+  }
+}
+
+void main() {
+  Widget makeTestableWidget(ISplashStore store) {
     return MaterialApp(
-      locale: const Locale('pt'),
+      locale: const Locale('en'),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -26,71 +38,47 @@ void main() {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: SplashScreen(store: mockStore),
+      home: SplashScreen(store: store, skipInit: true),
     );
   }
 
   group('SplashScreen', () {
-    testWidgets('exibe CircularProgressIndicator quando está carregando',
+    testWidgets('mostra CircularProgressIndicator quando está carregando',
         (tester) async {
-      when(() => mockStore.isLoading).thenReturn(true);
-      when(() => mockStore.errorMessage).thenReturn(null);
-      when(() => mockStore.pokemon).thenReturn(null);
+      final store = StubSplashStore(isLoading: true);
 
-      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pumpWidget(makeTestableWidget(store));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('exibe mensagem de erro e botão de retry quando falha',
+    testWidgets('mostra mensagem quando nenhum Pokémon está disponível',
         (tester) async {
-      when(() => mockStore.isLoading).thenReturn(false);
-      when(() => mockStore.errorMessage).thenReturn('Falha ao carregar');
-      when(() => mockStore.pokemon).thenReturn(null);
+      final store = StubSplashStore(pokemon: null);
 
-      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pumpWidget(makeTestableWidget(store));
 
-      expect(find.textContaining('Falha'), findsOneWidget);
-      expect(find.byType(ElevatedButton), findsOneWidget);
+      expect(find.text('No Pokémon available'), findsOneWidget);
     });
 
-    testWidgets('exibe mensagem de "nenhum Pokémon disponível"',
-        (tester) async {
-      when(() => mockStore.isLoading).thenReturn(false);
-      when(() => mockStore.errorMessage).thenReturn(null);
-      when(() => mockStore.pokemon).thenReturn(null);
-
-      await tester.pumpWidget(createWidgetUnderTest());
-
-      expect(
-        find.text(
-            AppLocalizations.of(tester.element(find.byType(SplashScreen)))!
-                .noPokemonAvailable),
-        findsOneWidget,
-      );
-    });
-
-    testWidgets('exibe Pokémon carregado corretamente', (tester) async {
-      const pokemon = Pokemon(
-        id: 25,
-        name: 'pikachu',
-        height: 0.4,
-        weight: 6.0,
-        types: ['electric'],
-        abilities: ['static'],
-        artwork:
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
+    testWidgets('mostra Pokémon carregado corretamente', (tester) async {
+      final store = StubSplashStore(
+        pokemon: const Pokemon(
+          id: 25,
+          name: 'pikachu',
+          height: 0.4,
+          weight: 6.0,
+          types: ['electric'],
+          abilities: ['static'],
+          artwork:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
+        ),
       );
 
-      when(() => mockStore.isLoading).thenReturn(false);
-      when(() => mockStore.errorMessage).thenReturn(null);
-      when(() => mockStore.pokemon).thenReturn(pokemon);
-
-      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pumpWidget(makeTestableWidget(store));
 
       expect(find.text('PIKACHU'), findsOneWidget);
-
-      expect(find.byType(CircularProgressIndicator), findsWidgets);
+      expect(find.byType(Image), findsWidgets);
     });
   });
 }

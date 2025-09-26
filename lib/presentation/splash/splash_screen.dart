@@ -6,9 +6,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'splash_store.dart';
 
 class SplashScreen extends StatefulWidget {
-  final SplashStore store;
+  final bool skipInit;
+  final ISplashStore store;
 
-  const SplashScreen({super.key, required this.store});
+  const SplashScreen({
+    super.key,
+    required this.store,
+    this.skipInit = false,
+  });
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -19,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _revealAnimation;
 
-  SplashStore get store => widget.store;
+  ISplashStore get store => widget.store;
 
   @override
   void initState() {
@@ -34,7 +39,9 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    _init();
+    if (!widget.skipInit) {
+      _init();
+    }
   }
 
   Future<void> _init() async {
@@ -111,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen>
                     return ColorFiltered(
                       colorFilter: ColorFilter.mode(
                         Colors.black.withOpacity(1 - _revealAnimation.value),
-                        BlendMode.srcATop, // Cria a silhueta escura
+                        BlendMode.srcATop,
                       ),
                       child: CachedNetworkImage(
                         imageUrl: pokemon.artwork,

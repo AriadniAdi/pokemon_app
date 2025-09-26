@@ -49,7 +49,7 @@ void main() {
 
     test('fromJson deve usar fallback de artwork quando não existir', () {
       final jsonWithoutArtwork = Map<String, dynamic>.from(sampleJson);
-      jsonWithoutArtwork['sprites'] = {}; // remove sprites
+      jsonWithoutArtwork['sprites'] = {};
 
       final dto = PokemonDetailsDto.fromJson(jsonWithoutArtwork);
 

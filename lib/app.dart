@@ -13,7 +13,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = ColorScheme.fromSeed(seedColor: Colors.red);
 
-    // Injeta o SplashStore de verdade
     final repository = PokemonRepositoryImpl(Dio());
     final getRandomPokemon = GetRandomPokemon(repository);
     final splashStore = SplashStore(getRandomPokemon);

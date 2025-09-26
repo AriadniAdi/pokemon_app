@@ -65,7 +65,7 @@ void main() {
       await store.loadMore();
 
       expect(store.pokemonList.length, 1);
-      expect(store.offset, 0); // sem "next" não avança
+      expect(store.offset, 0);
     });
 
     test('loadMore seta errorMessage quando API falhar', () async {
@@ -102,7 +102,6 @@ void main() {
     });
 
     test('refresh zera offset e limpa lista antes de recarregar', () async {
-      // primeiro loadMore, adiciona bulbasaur
       when(() => mockApi.fetchPokemonPage(
             limit: any(named: 'limit'),
             offset: any(named: 'offset'),
@@ -111,7 +110,6 @@ void main() {
       await store.loadMore();
       expect(store.pokemonList, isNotEmpty);
 
-      // agora mocka refresh devolvendo lista vazia
       when(() => mockApi.fetchPokemonPage(
                 limit: any(named: 'limit'),
                 offset: any(named: 'offset'),
@@ -121,9 +119,8 @@ void main() {
 
       await store.refresh();
 
-      // ASSERT
-      expect(store.offset, kPageSize); // avançou
-      expect(store.pokemonList, isEmpty); // limpou antes de carregar
+      expect(store.offset, kPageSize);
+      expect(store.pokemonList, isEmpty);
     });
   });
 }
