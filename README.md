@@ -3,12 +3,6 @@
 Um app Flutter que consome a [PokéAPI](https://pokeapi.co/) e mostra informações sobre os Pokémon.  
 Inspirado no clássico **“Quem é esse Pokémon?”**, com animações, telas de detalhes e lista de criaturas.
 
-## 🎥 Demonstração
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/arnaldochioquetta/pokemon_app/main/docs/pokemon.gif" width="300" />
-</div>
-
 ---
 
 ## ✨ Funcionalidades
