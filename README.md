@@ -5,7 +5,9 @@ Inspirado no clássico **“Quem é esse Pokémon?”**, com animações, telas 
 
 ## 🎥 Demonstração
 
-![Quem é esse Pokémon?](docs/pokemon.gif)
+<div align="center">
+  <img src="docs/pokemon.gif" alt="Pokémon Demo" width="300"/>
+</div>
 
 ---
 
